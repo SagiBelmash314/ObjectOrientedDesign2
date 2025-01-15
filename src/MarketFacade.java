@@ -21,11 +21,10 @@ public class MarketFacade {
     }
 
     public void addSeller() {
-        String name = UserInput.getSellerNameFromUser();
-        if (name.isEmpty()) return;
-        String password = UserInput.getPasswordFromUser();
-        sellerManager.addSeller(SellerFactory.createSeller(name, password));
-        System.out.println(name + " got added to the system as a seller.");
+        Seller seller = SellerFactory.createSeller();
+        if(seller==null) return;
+        sellerManager.addSeller(seller);
+        System.out.println(seller.getName() + " got added to the system as a seller.");
     }
 
     public void addBuyer() {
@@ -49,16 +48,12 @@ public class MarketFacade {
         }
         Seller seller = chooseSeller();
         if (seller == null) return;
-        System.out.println("Please enter the name of the product: ");
         String productName = UserInput.getProductNameFromUser();
         while (sellerManager.productExists(seller, productName)) {
             System.out.println("This product is already in the sellers list. Please choose another:");
             productName = UserInput.getProductNameFromUser();
         }
-        float price = UserInput.getProductPriceFromUser();
-        Category category = UserInput.getCategoryFromUser();
-        float packagePrice = UserInput.getPackagePriceFromUser();
-        seller.addProduct(ProductFactory.createProduct(productName, price, category, packagePrice));
+        seller.addProduct(ProductFactory.createProduct(productName));
     }
 
     public void addProductBuyer() {

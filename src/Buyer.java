@@ -12,7 +12,7 @@ public class Buyer implements Comparable<Buyer> {
         this.name = name;
         this.password = password;
         this.address = address;
-        this.shoppingCart = new ShoppingCart(this);
+        this.shoppingCart = ShoppingCartFactory.createShoppingCart(this);
         this.orders = new ShoppingCart[0];
         this.numOfOrders = 0;
     }
@@ -26,7 +26,7 @@ public class Buyer implements Comparable<Buyer> {
     }
 
     public ShoppingCart getShoppingCart() {
-        return new ShoppingCart(shoppingCart);
+        return ShoppingCartFactory.createShoppingCart(shoppingCart);
     }
 
     public void addItemToCart(Product product){
@@ -42,7 +42,7 @@ public class Buyer implements Comparable<Buyer> {
             shoppingCart.setDate();
             expandList();
             orders[numOfOrders++] = shoppingCart;
-            shoppingCart = new ShoppingCart(this);
+            shoppingCart = ShoppingCartFactory.createShoppingCart(this);
         }
         catch (EmptyCartException e) {
             System.out.println(e.getMessage());
@@ -66,7 +66,7 @@ public class Buyer implements Comparable<Buyer> {
     }
 
     public ShoppingCart getPrevOrder(int orderNum) {
-        return new ShoppingCart(orders[orderNum]);
+        return ShoppingCartFactory.createShoppingCart(orders[orderNum]);
     }
 
     public void setCart(ShoppingCart shoppingCart) {
