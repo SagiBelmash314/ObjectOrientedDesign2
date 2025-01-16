@@ -3,7 +3,7 @@ public class ProductFactory {
         return new Product(name, price, category, packagePrice);
     }
     public static Product createProduct(Product other) {
-        return new Product(other);
+        return createProduct(other.getName(),other.getPrice(),other.getCategory(),other.getPackagePrice());
     }
     public static Product createProduct(String name){
         float price = UserInput.getProductPriceFromUser();

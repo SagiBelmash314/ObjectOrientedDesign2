@@ -3,10 +3,10 @@ public class BuyerFactory {
         return new Buyer(name, password, address);
     }
 
-//    public static Buyer createBuyer() {
-//        String name = UserInput.getBuyerNameFromUser();
-//        if (name.isEmpty()) return null;
-//        String password = UserInput.getPasswordFromUser();
-//        return createBuyer(name, password,UserInput.getBuyerAddressFromUser());
-//    }
+    public static Buyer createBuyer() {
+        String name = UserInput.getBuyerNameFromUser();
+        if (name.isEmpty()) return null;
+        String password = UserInput.getPasswordFromUser();
+        return createBuyer(name, password,UserInput.getBuyerAddressFromUser());
+    }
 }

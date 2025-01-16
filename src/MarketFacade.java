@@ -1,12 +1,18 @@
 import java.util.*;
 
 public class MarketFacade {
-    public BuyerManger buyerManager;
-    public SellerManger sellerManager;
+    private BuyerManager buyerManager;
+    private SellerManager sellerManager;
+    private static MarketFacade instance;
 
-    public MarketFacade() {
-        this.buyerManager = new BuyerManger();
-        this.sellerManager = new SellerManger();
+    private MarketFacade(){
+        this.buyerManager = new BuyerManager();
+        this.sellerManager = new SellerManager();
+    }
+    public static MarketFacade getInstance() {
+       if(instance == null)
+           instance = new MarketFacade();
+       return instance;
     }
 
     public void generateExamples() {
@@ -22,7 +28,7 @@ public class MarketFacade {
 
     public void addSeller() {
         Seller seller = SellerFactory.createSeller();
-        if(seller==null) return;
+        if (seller == null) return;
         sellerManager.addSeller(seller);
         System.out.println(seller.getName() + " got added to the system as a seller.");
     }
@@ -216,7 +222,6 @@ public class MarketFacade {
         while (iterator.hasPrevious()) {
             System.out.println(iterator.previous());
         }
-
     }
 
     public void printNamesSortedByLength() {

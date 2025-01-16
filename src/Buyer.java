@@ -1,9 +1,10 @@
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class Buyer implements Comparable<Buyer> {
     private final String name;
     private final String password;
-    private final Address address ;
+    private final Address address;
     private ShoppingCart shoppingCart;
     private ShoppingCart[] orders;
     private int numOfOrders;
@@ -22,14 +23,14 @@ public class Buyer implements Comparable<Buyer> {
     }
 
     public Address getAddress() {
-        return new Address(address);
+        return AddressFactory.createAddress(address);
     }
 
     public ShoppingCart getShoppingCart() {
         return ShoppingCartFactory.createShoppingCart(shoppingCart);
     }
 
-    public void addItemToCart(Product product){
+    public void addItemToCart(Product product) {
         shoppingCart.addProduct(product);
     }
 
@@ -43,8 +44,7 @@ public class Buyer implements Comparable<Buyer> {
             expandList();
             orders[numOfOrders++] = shoppingCart;
             shoppingCart = ShoppingCartFactory.createShoppingCart(this);
-        }
-        catch (EmptyCartException e) {
+        } catch (EmptyCartException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -84,14 +84,14 @@ public class Buyer implements Comparable<Buyer> {
 
 
     @Override
-     public String toString() {
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(name).append("\n")
                 .append("Address: ").append(address).append("\n")
                 .append("Current Shopping Cart:\n").append(shoppingCart).append("\n")
                 .append("Order History:");
 
-        for(int i = 1; i < numOfOrders + 1; i++){
+        for (int i = 1; i < numOfOrders + 1; i++) {
             sb.append("\nOrder #").append(i).append(":\n").append(orders[i - 1].toString()).append("\n");
         }
 

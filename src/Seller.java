@@ -23,7 +23,7 @@ public class Seller implements Comparable<Seller> {
     public Product getProductByName(String name) {
         for (int i = 0; i < numOfProducts; i++) {
             if (products[i].getName().equals(name)) {
-                return new Product(products[i]);
+                return ProductFactory.createProduct(products[i]);
             }
         }
         return null;

@@ -13,7 +13,7 @@ public class Main {
 
     public static void run() {
         reader = new Scanner(System.in);
-        market = new MarketFacade();
+        market = MarketFacade.getInstance();
         menu();
     }
 

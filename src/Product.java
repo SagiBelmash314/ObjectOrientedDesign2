@@ -13,15 +13,7 @@ public class Product {
         this.category = category;
         this.packagePrice = packagePrice;
     }
-
-    public Product(Product other) {
-        this.name = other.name;
-        this.price = other.price;
-        this.serialNum = other.serialNum;
-        this.category = other.category;
-        this.packagePrice = other.packagePrice;
-    }
-
+    public float getPackagePrice() { return packagePrice; }
     public String getName() {
         return name;
     }
