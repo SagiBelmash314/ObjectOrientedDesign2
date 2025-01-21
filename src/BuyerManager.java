@@ -91,7 +91,7 @@ public class BuyerManager {
         return names;
     }
 
-    public Iterator<?> buyerIterator() {
+    public Iterator<?> iterator() {
         return new ConcreteIterator();
     }
 
@@ -105,8 +105,53 @@ public class BuyerManager {
 
         @Override
         public Buyer next() {
-            if(!hasNext()) throw new NoSuchElementException();
+            if (!hasNext()) throw new NoSuchElementException();
             return buyers[curr++];
         }
     }
+
+    public ListIterator<?> listIterator() {
+        return new ConcreteListIterator();
+    }
+
+    private class ConcreteListIterator extends ConcreteIterator implements ListIterator<Buyer> {
+
+        @Override
+        public boolean hasPrevious() {
+            return curr > 0;
+        }
+
+        @Override
+        public Buyer previous() {
+            if (!hasPrevious()) throw new NoSuchElementException();
+            curr--;
+            return buyers[curr];
+        }
+
+        @Override
+        public int nextIndex() {
+            return curr + 1;
+        }
+
+        @Override
+        public int previousIndex() {
+            return curr - 1;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void set(Buyer buyer) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void add(Buyer buyer) {
+            throw new UnsupportedOperationException();
+        }
+    }
+
 }

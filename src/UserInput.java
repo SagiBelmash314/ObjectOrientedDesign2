@@ -107,7 +107,7 @@ public class UserInput {
         System.out.println(msg);
         String answer = reader.next();
         while (!answer.equals("Y") && !answer.equals("N")) {
-            System.out.println("Please enter \"Y\" or \"N\":");
+            System.out.println(msg);
             answer = reader.next();
         }
         return answer;

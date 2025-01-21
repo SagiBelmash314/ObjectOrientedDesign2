@@ -5,14 +5,15 @@ public class MarketFacade {
     private SellerManager sellerManager;
     private static MarketFacade instance;
 
-    private MarketFacade(){
+    private MarketFacade() {
         this.buyerManager = new BuyerManager();
         this.sellerManager = new SellerManager();
     }
+
     public static MarketFacade getInstance() {
-       if(instance == null)
-           instance = new MarketFacade();
-       return instance;
+        if (instance == null)
+            instance = new MarketFacade();
+        return instance;
     }
 
     public void generateExamples() {
@@ -212,6 +213,7 @@ public class MarketFacade {
     }
 
     public void printReversedDoubles() {
+        Scanner sc = new Scanner(System.in);
         HashMap<String, Integer> names = buyerManager.getLinkedHashmapNames(); // The names we saved without duplicates
         ArrayList<String> doublesList = new ArrayList<>();
         ListIterator<String> iterator = doublesList.listIterator();
@@ -221,6 +223,32 @@ public class MarketFacade {
         }
         while (iterator.hasPrevious()) {
             System.out.println(iterator.previous());
+        }
+        System.out.println("Do you want to see the output of my self-implemented iterators (Y/y or any other key to skip):");
+        if (!sc.next().equalsIgnoreCase("y"))
+            return;
+        printWithMyIterator();
+        printWithMyListIterator();
+    }
+
+    private void printWithMyIterator() {
+        System.out.println("Printing using my iterator: ");
+        Iterator<?> myIterator = buyerManager.iterator();
+        while (myIterator.hasNext()) {
+            System.out.println(myIterator.next());
+        }
+    }
+
+    private void printWithMyListIterator() {
+        System.out.println("Printing using my list iterator: ");
+        ListIterator<?> myListIterator = buyerManager.listIterator();
+        while (myListIterator.hasNext()) {
+            System.out.println(myListIterator.next());
+        }
+        System.out.println("Printing in reverse using my list iterator: ");
+        while (myListIterator.hasPrevious()) {
+            System.out.println(myListIterator.previousIndex());
+            System.out.println(myListIterator.previous());
         }
     }
 
