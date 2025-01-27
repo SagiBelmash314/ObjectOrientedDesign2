@@ -3,10 +3,18 @@ import java.util.*;
 public class BuyerManager {
     private Buyer[] buyers;
     private int numOfBuyers;
+    private LinkedHashSet<Observer> observers;
 
     public BuyerManager() {
         buyers = new Buyer[0];
         numOfBuyers = 0;
+        observers = new LinkedHashSet<>();
+        attachObservers();
+    }
+
+    private void attachObservers() {
+        observers.add(new Action1());
+        observers.add(new Action2());
     }
 
     public boolean areThereBuyers() {
@@ -100,7 +108,16 @@ public class BuyerManager {
 
         @Override
         public boolean hasNext() {
-            return numOfBuyers > curr;
+            if (numOfBuyers > curr) {
+                return true;
+            }
+            for (Observer o : observers) {
+                if (this instanceof ListIterator) {
+                    o.update("My ListIterator ended!");
+                }
+                else o.update("My Iterator ended!");
+            }
+            return false;
         }
 
         @Override
@@ -118,7 +135,12 @@ public class BuyerManager {
 
         @Override
         public boolean hasPrevious() {
-            return curr > 0;
+            if (curr > 0)
+                return true;
+            for (Observer o : observers) {
+                o.update("My ListIterator ended");
+            }
+            return false;
         }
 
         @Override
