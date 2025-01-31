@@ -4,10 +4,25 @@ public class MarketFacade {
     private BuyerManager buyerManager;
     private SellerManager sellerManager;
     private static MarketFacade instance;
+    private LinkedHashSet<Observer> observers;
+
 
     private MarketFacade() {
         this.buyerManager = new BuyerManager();
         this.sellerManager = new SellerManager();
+        observers = new LinkedHashSet<>();
+        attachObservers();
+    }
+
+    private void attachObservers() {
+        observers.add(new Action1());
+        observers.add(new Action2());
+    }
+
+    private void updateObservers(String msg) {
+        for (Observer o : observers) {
+            o.update(msg);
+        }
     }
 
     public static MarketFacade getInstance() {
@@ -237,6 +252,7 @@ public class MarketFacade {
         while (myIterator.hasNext()) {
             System.out.println(myIterator.next());
         }
+        updateObservers("My Iterator ended!");
     }
 
     private void printWithMyListIterator() {
@@ -245,11 +261,15 @@ public class MarketFacade {
         while (myListIterator.hasNext()) {
             System.out.println(myListIterator.next());
         }
+        for (Observer o : observers) {
+            o.update("My ListIterator ended!");
+        }
         System.out.println("Printing in reverse using my list iterator: ");
         while (myListIterator.hasPrevious()) {
             System.out.println(myListIterator.previousIndex());
             System.out.println(myListIterator.previous());
         }
+        updateObservers("My ListIterator ended!");
     }
 
     public void printNamesSortedByLength() {
