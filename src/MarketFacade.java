@@ -242,22 +242,23 @@ public class MarketFacade {
         System.out.println("Do you want to see the output of my self-implemented iterators (Y/y or any other key to skip):");
         if (!sc.next().equalsIgnoreCase("y"))
             return;
-        printWithMyIterator();
-        printWithMyListIterator();
+        MyArrayList<?> myArrayList = new MyArrayList<>(doublesList);
+        printWithMyIterator(myArrayList);
+        printWithMyListIterator(myArrayList);
     }
 
-    private void printWithMyIterator() {
+    private void printWithMyIterator(MyArrayList<?> myArrayList) {
         System.out.println("Printing using my iterator: ");
-        Iterator<?> myIterator = buyerManager.iterator();
+        Iterator<?> myIterator = myArrayList.iterator();
         while (myIterator.hasNext()) {
             System.out.println(myIterator.next());
         }
         updateObservers("My Iterator ended!");
     }
 
-    private void printWithMyListIterator() {
+    private void printWithMyListIterator(MyArrayList<?> myArrayList) {
         System.out.println("Printing using my list iterator: ");
-        ListIterator<?> myListIterator = buyerManager.listIterator();
+        ListIterator<?> myListIterator = myArrayList.listIterator();
         while (myListIterator.hasNext()) {
             System.out.println(myListIterator.next());
         }
@@ -266,7 +267,6 @@ public class MarketFacade {
         }
         System.out.println("Printing in reverse using my list iterator: ");
         while (myListIterator.hasPrevious()) {
-            System.out.println(myListIterator.previousIndex());
             System.out.println(myListIterator.previous());
         }
         updateObservers("My ListIterator ended!");
