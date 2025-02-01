@@ -262,9 +262,7 @@ public class MarketFacade {
         while (myListIterator.hasNext()) {
             System.out.println(myListIterator.next());
         }
-        for (Observer o : observers) {
-            o.update("My ListIterator ended!");
-        }
+        updateObservers("My ListIterator ended!");
         System.out.println("Printing in reverse using my list iterator: ");
         while (myListIterator.hasPrevious()) {
             System.out.println(myListIterator.previous());
