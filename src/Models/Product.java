@@ -1,3 +1,5 @@
+package Models;
+
 public class Product {
     private final String name;
     private final float price;

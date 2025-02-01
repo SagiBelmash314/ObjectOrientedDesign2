@@ -1,3 +1,5 @@
+package Models;
+
 public class Manager{
     private BuyerManager buyerManger;
     private SellerManager sellerManger;

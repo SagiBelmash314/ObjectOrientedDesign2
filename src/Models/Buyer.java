@@ -1,5 +1,6 @@
+package Models;
+
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class Buyer implements Comparable<Buyer> {
     private final String name;
@@ -87,7 +88,7 @@ public class Buyer implements Comparable<Buyer> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(name).append("\n")
-                .append("Address: ").append(address).append("\n")
+                .append("Models.Address: ").append(address).append("\n")
                 .append("Current Shopping Cart:\n").append(shoppingCart).append("\n")
                 .append("Order History:");
 

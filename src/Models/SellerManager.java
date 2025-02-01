@@ -1,3 +1,5 @@
+package Models;
+
 import java.util.Arrays;
 
 public class SellerManager {

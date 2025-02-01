@@ -1,3 +1,5 @@
+package Models;
+
 public class ShoppingCartFactory {
     public static ShoppingCart createShoppingCart(Buyer buyer){
         return new ShoppingCart(buyer);
