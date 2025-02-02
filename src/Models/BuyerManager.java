@@ -92,5 +92,22 @@ public class BuyerManager {
         }
         return names;
     }
+        public ArrayList<String> createNameArrayList() {
+        HashMap<String, Integer> names = getLinkedHashmapNames(); // The names we saved without duplicates
+        ArrayList<String> doublesList = new ArrayList<>();
+        ListIterator<String> iterator = doublesList.listIterator();
+        for (String key : names.keySet()) {
+            iterator.add(key);
+            iterator.add(key);
+        }
+        return doublesList;
+    }
+
+    public ArrayListMemento createNameArrayListMemento() {
+        return new ArrayListMemento(createNameArrayList());
+    }
+    public ArrayList<String> restoreNameArrayListMemento(ArrayListMemento memento){
+        return memento.getList();
+    }
 
 }

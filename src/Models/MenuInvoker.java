@@ -27,8 +27,8 @@ public class MenuInvoker {
         commands.put(101, new printNameOccurrencesCommand(market));
         commands.put(102, new printReversedDoublesCommand(market));
         commands.put(103, new printNamesSortedByLengthCommand(market));
-        //commands.put(104, new );
-        //commands.put(105, new );
+        commands.put(104, new saveArrayListCommand(market));
+        commands.put(105, new restoreArrayListCommand(market));
     }
 
     public void executeCommand(int option) {

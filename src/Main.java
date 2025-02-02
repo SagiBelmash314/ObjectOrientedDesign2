@@ -39,6 +39,8 @@ public static void menu() throws InputMismatchException {
                 101: Print number of occurrences of a specific name in the buyers array
                 102: Print the buyer's names with doubles in reverse
                 103: Print the buyer's names sorted by name length
+                104: Save the current buyer array list
+                105: Restore buyer array list from last save
                 """);
         boolean acceptableAnswer = false;
         while (!acceptableAnswer) {

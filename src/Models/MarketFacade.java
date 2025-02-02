@@ -1,6 +1,7 @@
 package Models;
 
 import java.util.*;
+
 import Observers.Action1;
 import Observers.Action2;
 import Observers.Observer;
@@ -10,6 +11,7 @@ public class MarketFacade {
     private SellerManager sellerManager;
     private static MarketFacade instance;
     private LinkedHashSet<Observer> observers;
+    private ArrayListHistory listHistory;
 
 
     private MarketFacade() {
@@ -17,6 +19,7 @@ public class MarketFacade {
         this.sellerManager = new SellerManager();
         observers = new LinkedHashSet<>();
         attachObservers();
+        this.listHistory = new ArrayListHistory();
     }
 
     private void attachObservers() {
@@ -275,12 +278,28 @@ public class MarketFacade {
         updateObservers("My ListIterator ended!");
     }
 
+    public void saveArrayList() {
+        listHistory.saveMemento(buyerManager.createNameArrayListMemento());
+        System.out.println("Array List saved!");
+    }
+
+    public void restoreArrayList() {
+        try {
+            ArrayList<String> list = buyerManager.restoreNameArrayListMemento(listHistory.getMemento());
+            System.out.println("The restored array list is: " + list);
+        } catch (Exception e) {
+            System.out.println("No save was made yet");
+        }
+
+    }
+
     public void printNamesSortedByLength() {
         TreeSet<Buyer> tree = buyerManager.getBuyerTreeSet();
         for (Buyer buyer : tree) {
             System.out.println(buyer.getName().toUpperCase());
         }
     }
+
 
 }
 
