@@ -237,15 +237,10 @@ public class MarketFacade {
 
     public void printReversedDoubles() {
         Scanner sc = new Scanner(System.in);
-        HashMap<String, Integer> names = buyerManager.getLinkedHashmapNames(); // The names we saved without duplicates
-        ArrayList<String> doublesList = new ArrayList<>();
-        ListIterator<String> iterator = doublesList.listIterator();
-        for (String key : names.keySet()) {
-            iterator.add(key);
-            iterator.add(key);
-        }
-        while (iterator.hasPrevious()) {
-            System.out.println(iterator.previous());
+        ArrayList<String> doublesList = buyerManager.createNameArrayList();
+        MyListIterator<String> myIterator = new MyListIterator<>(doublesList, doublesList.size());
+        while (myIterator.myHasPrevious()) {
+            System.out.println(myIterator.myPrevious());
         }
         System.out.println("Do you want to see the output of my self-implemented iterators (Y/y or any other key to skip):");
         if (!sc.next().equalsIgnoreCase("y"))
@@ -299,11 +294,4 @@ public class MarketFacade {
             System.out.println(buyer.getName().toUpperCase());
         }
     }
-
-
 }
-
-
-
-
-
