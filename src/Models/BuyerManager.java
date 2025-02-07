@@ -92,7 +92,8 @@ public class BuyerManager {
         }
         return names;
     }
-        public ArrayList<String> createNameArrayList() {
+
+    public ArrayList<String> createNameArrayList() {
         HashMap<String, Integer> names = getLinkedHashmapNames(); // The names we saved without duplicates
         ArrayList<String> doublesList = new ArrayList<>();
         ListIterator<String> iterator = doublesList.listIterator();

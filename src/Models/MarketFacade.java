@@ -285,7 +285,6 @@ public class MarketFacade {
         } catch (Exception e) {
             System.out.println("No save was made yet");
         }
-
     }
 
     public void printNamesSortedByLength() {
